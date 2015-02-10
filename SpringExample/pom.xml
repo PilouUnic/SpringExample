@@ -5,14 +5,20 @@
 	<artifactId>SpringExample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
+	<!-- L'important de centraliser un max de conf. dans ce fichier est pour 
+		faicilité la portabilité du projet -->
 	<properties>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<!-- Liste de valeurs pouvant être utilisée dans le pom.xml example : les 
+			versions -->
+		<!-- Permet definir l'encodage de l'application -->
+		<encoding>UTF-8</encoding>
+		<version.java>1.8</version.java>
+		<spring.version>4.0.5.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
-
-		<!-- Spring 3 dependencies -->
+		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -24,6 +30,26 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 	</dependencies>
+
+	<!-- Paramètrage du Build, l'objectif est de se désolidariser le plus possible 
+		de l'IDE. De ce fait n'importe qui voulant compiler le projet n'aura théoriquement 
+		aucun soucis -->
+	<build>
+		<finalName>SpringExample</finalName>
+		<defaultGoal>clean package install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- Permet de paramétrer la version de JAVA utilisée et à utilisée -->
+				<configuration>
+					<!-- Version de java utilisée pour l'écriture du programme -->
+					<source>${version.java}</source>
+					<!-- Version de java utilisée pour la compilation du programme -->
+					<target>${version.java}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
