@@ -1,6 +1,6 @@
-package fr.spring.example;
+package fr.spring.example.simple.bean;
 
-public class ClassExample {
+public class SimplePOJO {
 
 	private String name;
 	 
